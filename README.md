@@ -13,6 +13,10 @@ In this environment the agent should collect (green, red and yellow) items on th
 
 Can use pixel or vector obsevations (by setting from_pixels argument). Set the agent's preferences among objectives in constructor and reset function so that episodes end when no more reward can be gathered.
 
+Actions: STAY, LEFT, RIGHT, DOWN, UP
+
+Reward vector: [steps_in_env, collision_with_border, collecting_green_item, collecting_red_item, collecting_yellow_item, other_agent_collecting_red_item]
+
 See: http://www.diva-portal.org/smash/get/diva2:1362933/FULLTEXT01.pdf
 
 ### Traffic Environment
@@ -20,10 +24,18 @@ In this environment the agent should collect two items in the grid, and must bal
 
 Can use pixel or vector obsevations (by setting from_pixels argument). Set the agent's preferences among objectives in constructor and reset function so that episodes end when no more reward can be gathered.
 
+Actions: STAY, LEFT, RIGHT, DOWN, UP
+
+Reward vector: [steps_in_env, collision_with_border, collecting_green_items, stepping_in_yellow_road_segment, collision_with_cars]
+
 See: http://www.diva-portal.org/smash/get/diva2:1362933/FULLTEXT01.pdf
 
 ### Deep Sea Treasure Environment
 In this environment the agent operates a submarine in search of treasure on the seabed, and must balance the value of collected treasures against the time spent.
+
+Actions: STAY, LEFT, RIGHT, DOWN, UP
+
+Reward vector: [steps_in_env, collision_with_border, collecting_treasure_1 - collecting_treasure_10]
 
 See: https://link.springer.com/content/pdf/10.1007/s10994-010-5232-5.pdf
 
