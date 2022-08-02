@@ -336,10 +336,8 @@ class Gridworld(Env):
         if include_agent:
             for i in range(self.inflation):
                 for j in range(self.inflation):
-                    pass
                     obs[(self.rows - self.agent_pos[1] - 1) * self.inflation + i, self.agent_pos[0] * self.inflation + j] = self.agent_color
-        #plt.imshow(obs)
-        #plt.show()
+
         return obs
 
     def seed(self, seed=None):
@@ -420,7 +418,7 @@ class Gridworld(Env):
             self.render_object(agent.position[0] + 1, agent.position[1] + 1, agent.color)
 
         # Draw agent
-        self.render_object(self.agent_pos[0] + 1, self.agent_pos[1] + 1, (0.0, 0.0, 255.0))
+        self.render_object(self.agent_pos[0] + 1, self.agent_pos[1] + 1, self.agent_color)
 
         return self.viewer.render(return_rgb_array = mode=='rgb_array')
 

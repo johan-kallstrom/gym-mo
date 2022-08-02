@@ -55,11 +55,10 @@ class MOGatheringEnv(MOGridworld):
 
 
 if __name__=="__main__":
-    my_grid = MOGatheringEnv(from_pixels=True)
+    from gym_mo.envs.gridworlds.mo_gridworld_base import MORandomPlayer
+    
+    my_grid = MOGatheringEnv()
+    player = MORandomPlayer(my_grid, 2)
+    player.run()
+    
 
-    done = False
-    my_grid.reset()
-    while not done:
-        _, r, done, _ = my_grid.step(my_grid.action_space.sample())
-        my_grid.render()
-        time.sleep(0.5)

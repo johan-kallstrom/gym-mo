@@ -49,20 +49,21 @@ class MOTrafficEnv(MOGridworld):
 
     def __init__(self,
                  from_pixels=True,
+                 agent_start=[0,0],
+                 agent_color=(0.0, 0.0, 255.0),
                  preference=np.array([-1,-5,+50,-20,-20])):
         super(MOTrafficEnv, self).__init__(map=TRAFFIC_MAP,
                                            object_mapping=TRAFFIC_MAPPING,
                                            from_pixels=from_pixels,
                                            init_agents=TRAFFIC_AGENTS,
-                                           agent_start=[0,0],
+                                           agent_start=agent_start,
+                                           agent_color=agent_color,
+                                           preference=preference,
                                            encounter_other_agents=True)
 
 if __name__=="__main__":
-    my_grid = MOTrafficEnv(from_pixels=True)
-
-    done = False
-    my_grid.reset()
-    while not done:
-        _, r, done, _ = my_grid.step(my_grid.action_space.sample())
-        my_grid.render()
-        time.sleep(0.5)
+    from gym_mo.envs.gridworlds.mo_gridworld_base import MORandomPlayer
+    
+    my_grid = MOTrafficEnv()
+    player = MORandomPlayer(my_grid, 2)
+    player.run()

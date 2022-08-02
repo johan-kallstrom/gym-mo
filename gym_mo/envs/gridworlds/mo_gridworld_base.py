@@ -148,17 +148,11 @@ class MORandomPlayer(RandomPlayer):
 
     def step_env(self):
         obs, reward, done, info = self.env.step(self.env.action_space.sample())
-        return (obs, reward, done, info)
+        return (reward, done)
 
 if __name__=="__main__":
     my_grid = MOGridworld(gridworld_base.TEST_MAP, 
                           gridworld_base.TEST_MAPPING,
                           preference=np.array([-1,-5,+2,-2,-1, -1]))
-
-    done = False
-    my_grid.reset()
-    while not done:
-        _, r, done, _ = my_grid.step(my_grid.action_space.sample())
-        my_grid.render()
-        time.sleep(0.5)
-    
+    player = MORandomPlayer(my_grid, 2)
+    player.run()
